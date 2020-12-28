@@ -1,0 +1,925 @@
+Title: Adding products
+
+URL: http://localhost:8080/productbilling/products
+
+Method:  POST
+
+Request:
+
+{
+	"productName":"MyVilla",
+	"productType":"Rental House"
+}
+
+Response:
+
+{
+    "error": false,
+    "data": {
+        "productId": 1,
+        "productName": "MyVilla",
+        "productType": "Rental House"
+    }
+}
+
+
+
+Title: Get All products
+
+
+URL:  http://localhost:8080/productbilling/products
+
+Method: GET
+
+Request:
+
+null
+
+Response:
+
+{
+    "error": false,
+    "data": [
+        {
+            "productId": 1,
+            "productName": "MyVilla",
+            "productType": "Rental House"
+        }
+    ]
+}
+
+
+
+
+
+Title: Update Product Details
+
+
+URL:  http://localhost:8080/productbilling/products
+
+Method:  PUT
+
+Request:
+
+{
+	"productId":1,
+	"productName":"OurVilla",
+	"productType":"Rental House"
+}
+
+Response:
+
+{
+    "error": false,
+    "data": {
+        "productId": 1,
+        "productName": "OurVilla",
+        "productType": "Rental House"
+    }
+}
+
+
+
+Title: Get Product Using Product Name
+
+
+URL:  http://localhost:8080/productbilling/products/product?productName=OurVilla
+
+Method: POST
+
+Request:
+
+null
+
+Response:
+
+{
+    "error": false,
+    "data": {
+        "productId": 1,
+        "productName": "OurVilla",
+        "productType": "Rental House"
+    }
+}
+
+
+
+Title: Removing a Product
+
+
+URL:  http://localhost:8080/productbilling/products
+
+Method: DELETE
+
+Request:
+
+{
+	"productId":2,
+	"productName":"JIO Postpaid",
+	"productType":"Communication"
+}
+
+Response:
+
+{
+    "error": false,
+    "data": {
+        "productId": 2,
+        "productName": "JIO Postpaid",
+        "productType": "Communication"
+    }
+}
+
+
+
+Title: Add a Plan for a Product
+
+
+URL:  http://localhost:8080/productbilling/plans
+
+Method:  POST
+
+Request:
+
+{
+		    "planAmount": 199,
+		    "planFrequency": 54,
+		    "type": "Furnished",
+		    "product": {
+		        "productId": 47,
+		        "productName": "OurVilla",
+		        "productType": "Rental House"
+		    }
+        }
+
+Response:
+
+{
+    "error": false,
+    "data": {
+        "planId": 48,
+        "planAmount": 199000.999,
+        "planFrequency": 54,
+        "type": "Furnished",
+        "product": {
+            "productId": 47,
+            "productName": "OurVilla",
+            "productType": "Rental House"
+        }
+    }
+}
+
+
+
+Title: Get all plans that belongs to a particular product
+
+
+URL:  http://localhost:8080/productbilling/plans/plan
+
+Method: POST
+
+Request:
+
+{
+            "productId": 47,
+            "productName": "OurVilla",
+            "productType": "Rental House"
+        }
+
+Response:
+
+{
+    "error": false,
+    "data": [
+        {
+            "planId": 48,
+            "planAmount": 199001.0,
+            "planFrequency": 54,
+            "type": "Furnished",
+            "product": {
+                "productId": 47,
+                "productName": "OurVilla",
+                "productType": "Rental House"
+            }
+        }
+    ]
+}
+
+
+
+
+
+Title: Get all plans
+
+
+URL:  http://localhost:8080/productbilling/plans
+
+Method:  GET
+
+Request:
+
+null
+
+Response:
+
+{
+    "error": false,
+    "data": [
+        {
+            "planId": 48,
+            "planAmount": 199001.0,
+            "planFrequency": 54,
+            "type": "Furnished",
+            "product": {
+                "productId": 47,
+                "productName": "OurVilla",
+                "productType": "Rental House"
+            }
+        }
+    ]
+}
+
+
+
+Title: Update a plan
+
+
+URL:  http://localhost:8080/productbilling/plans
+
+Method:  PUT
+
+Request:
+
+{
+            "planId": 48,
+            "planAmount": 100000,
+            "planFrequency": 30,
+            "type": "Furnished",
+            "product": {
+                "productId": 47,
+                "productName": "OurVilla",
+                "productType": "Rental House"
+            }
+        }
+
+Response:
+
+{
+    "error": false,
+    "data": {
+        "planId": 48,
+        "planAmount": 100000.0,
+        "planFrequency": 30,
+        "type": "Furnished",
+        "product": {
+            "productId": 47,
+            "productName": "OurVilla",
+            "productType": "Rental House"
+        }
+    }
+}
+
+
+
+Title: Remove a plan
+
+
+URL:  http://localhost:8080/productbilling/plans
+
+Method: DELETE
+
+Request:
+
+{
+            "planId": 48,
+            "planAmount": 100000,
+            "planFrequency": 30,
+            "type": "Furnished",
+            "product": {
+                "productId": 47,
+                "productName": "OurVilla",
+                "productType": "Rental House"
+            }
+        }
+
+Response:
+
+{
+    "error": false,
+    "data": {
+        "planId": 48,
+        "planAmount": 100000.0,
+        "planFrequency": 30,
+        "type": "Furnished",
+        "product": {
+            "productId": 47,
+            "productName": "OurVilla",
+            "productType": "Rental House"
+        }
+    }
+}
+
+
+
+Title: Add Details of a Plan
+
+
+URL:  http://localhost:8080/productbilling/plans/detail
+
+Method: POST
+
+Request:
+
+{
+	"serviceType":"Data",
+	"detail":54,
+	"unit":"GB",
+	"plan":{
+		"planId":35,
+		"planAmount":399,
+		"planFrequency":28,
+		"type":"Data",
+		"product":{
+		"productId":15,
+		"productName":"VODOFONE",
+		"productType":"Communication"
+}
+	}
+}
+
+Response:
+
+{
+    "error": false,
+    "data": {
+        "serviceType": "Data",
+        "detail": 54,
+        "unit": "GB",
+        "plan": {
+            "planId": 35,
+            "planAmount": 0.0,
+            "planFrequency": 0,
+            "type": null,
+            "product": null
+        }
+    }
+}
+
+
+Title: Getting Details Belongs to a particular plan
+
+
+URL:  http://localhost:8080/productbilling/plans/plan/detail
+
+Method: POST
+
+Request: 
+
+{
+		"planId":35,
+		"planAmount":399,
+		"planFrequency":28,
+		"type":"Data",
+		"product":{
+			"productId":15,
+			"productName":"VODOFONE",
+			"productType":"Communication"
+			}
+	}
+
+Response:
+
+{
+    "error": false,
+    "data": [
+        {
+            "serviceType": "BHK",
+            "detail": 2,
+            "plan": {
+                "planId": 54,
+                "planAmount": 10999.99,
+                "planFrequency": 10,
+                "type": "Furnished",
+                "product": {
+                    "productId": 47,
+                    "productName": "OurVilla",
+                    "productType": "Rental House"
+                }
+            }
+        }
+    ]
+}
+
+
+
+Title: Update details of a plan
+
+
+URL:  http://localhost:8080/productbilling/plans/detail
+
+Method: PUT
+
+Request:
+
+{
+	"serviceType":"Voice",
+	"detail":5000,
+	"unit":"min",
+	"plan":{
+		"planId":35,
+		"planAmount":399,
+		"planFrequency":28,
+		"type":"Data",
+		"product":{
+		"productId":15,
+		"productName":"VODOFONE",
+		"productType":"Communication"
+		}
+	}
+}
+
+Response:
+
+{
+    "error": false,
+    "data": {
+        "serviceType": "Voice",
+        "detail": 5000,
+        "unit": "min",
+        "plan": {
+            "planId": 35,
+        }
+    }
+}
+
+
+
+Title: Remove detail belongs to a plan
+
+
+URL:  http://localhost:8080/productbilling/plans/detail
+
+Method: DELETE
+
+Request:
+
+{
+            "serviceType": "BHK",
+            "detail": 4,
+            "plan": {
+                "planId": 54,
+                "planAmount": 10999.99,
+                "planFrequency": 10,
+                "type": "Furnished",
+                "product": {
+                    "productId": 47,
+                    "productName": "OurVilla",
+                    "productType": "Rental House"
+                }
+            }
+        }
+
+Response:
+
+{
+    "error": false,
+    "data": {
+        "serviceType": "BHK",
+        "detail": 4,
+        "plan": {
+            "planId": 54,
+            "planAmount": 10999.99,
+            "planFrequency": 10,
+            "type": "Furnished",
+            "product": {
+                "productId": 47,
+                "productName": "OurVilla",
+                "productType": "Rental House"
+            }
+        }
+    }
+}
+
+
+
+Title: Add charge for a particular Plan
+
+
+URL:  http://localhost:8080/productbilling/plans/charge
+
+Method: POST
+
+Request:
+
+{
+	"chargeType":"Rental Agreement",
+	"charge":"150",
+	"document":"PAN",
+	"plan":{
+		"planId":54
+	}
+}
+
+Response:
+
+{
+    "error": false,
+    "data": {
+        "chargeType": "Rental Agreement",
+        "charge": 150.0,
+        "document": "PAN",
+        "plan": {
+            "planId": 54,
+            "planAmount": 0.0,
+            "planFrequency": 0,
+            "type": null,
+            "product": null
+        }
+    }
+}
+
+
+
+Title: Get Charges belongs to a plan
+
+
+URL:  http://localhost:8080/productbilling/plans/plan/charge
+
+Method: POST
+
+Request:
+
+{
+	"planId":54
+}
+
+Response:
+
+{
+    "error": false,
+    "data": [
+        {
+            "chargeType": "Advance",
+            "charge": 5000.0,
+            "document": "Adhar",
+            "plan": {
+                "planId": 54,
+                "planAmount": 10999.99,
+                "planFrequency": 10,
+                "type": "Furnished",
+                "product": {
+                    "productId": 47,
+                    "productName": "OurVilla",
+                    "productType": "Rental House"
+                }
+            }
+        },
+        {
+            "chargeType": "Maintainance",
+            "charge": 1199.99,
+            "document": "none",
+            "plan": {
+                "planId": 54,
+                "planAmount": 10999.99,
+                "planFrequency": 10,
+                "type": "Furnished",
+                "product": {
+                    "productId": 47,
+                    "productName": "OurVilla",
+                    "productType": "Rental House"
+                }
+            }
+        },
+        {
+            "chargeType": "Rental Agreement",
+            "charge": 150.0,
+            "document": "PAN",
+            "plan": {
+                "planId": 54,
+                "planAmount": 10999.99,
+                "planFrequency": 10,
+                "type": "Furnished",
+                "product": {
+                    "productId": 47,
+                    "productName": "OurVilla",
+                    "productType": "Rental House"
+                }
+            }
+        }
+    ]
+}
+
+
+
+Title: Update Charge details
+
+
+URL:  http://localhost:8080/productbilling/plans/charge
+
+Method: PUT
+
+Request:
+
+{
+            "chargeType": "Advance",
+            "charge": 3500.0,
+            "document": "Adhar",
+            "plan": {
+                "planId": 54,
+                "planAmount": 10999.99,
+                "planFrequency": 10,
+                "type": "Furnished",
+                "product": {
+                    "productId": 47,
+                    "productName": "OurVilla",
+                    "productType": "Rental House"
+                }
+            }
+        }
+
+Response:
+
+{
+    "error": false,
+    "data": {
+        "chargeType": "Advance",
+        "charge": 3500.0,
+        "document": "Adhar",
+        "plan": {
+            "planId": 54,
+            "planAmount": 10999.99,
+            "planFrequency": 10,
+            "type": "Furnished",
+            "product": {
+                "productId": 47,
+                "productName": "OurVilla",
+                "productType": "Rental House"
+            }
+        }
+    }
+}
+
+
+
+Title: Remove a plan charge
+
+
+URL:  http://localhost:8080/productbilling/plans/charge
+
+Method: DELETE
+
+Request:
+
+{
+	"chargeType":"Maintainance",
+	"charge":"1199.99",
+	"document":"none",
+	"plan":{
+		"planId":54
+	}
+}
+
+Response:
+
+{
+    "error": false,
+    "data": {
+        "chargeType": "Maintainance",
+        "charge": 1199.99,
+        "document": "none",
+        "plan": {
+            "planId": 54,
+            "planAmount": 0.0,
+            "planFrequency": 0,
+            "type": null,
+            "product": null
+        }
+    }
+}
+
+
+
+Title:Add Overdue details for a plan
+
+
+URL:  http://localhost:8080/productbilling/plans/overdue
+
+Method: POST
+
+Request:
+
+{
+	"overageType":"Maintainance",
+	"overageService":1,
+	"serviceCost":10,
+	"unit": "day/s",
+	"plan":{
+		"planId":5
+	}
+}
+
+
+Response:
+
+{
+    "error": false,
+    "data": {
+        "overageType": "Maintainance",
+        "overageService": 1,
+        "serviceCost": 10.0,
+        "unit": "day/s",
+        "plan": {
+            "planId": 5,
+            "planAmount": 0.0,
+            "planFrequency": 0,
+            "type": null,
+            "product": null
+        }
+    }
+}
+
+
+
+Title: Get Overdue details belongs to a particular plan
+
+
+URL:  http://localhost:8080/productbilling/plans/plan/overdue
+
+Method: POST
+
+Request:
+
+{
+	"planId":54
+}
+
+Response:
+
+{
+    "error": false,
+    "data": [
+        {
+            "overageType": "Rent",
+            "overageService": 1,
+            "serviceCost": 199.99,
+            "unit": "day/s",
+            "plan": {
+                "planId": 5,
+                "planAmount": 200000.9,
+                "planFrequency": 28,
+                "type": "Furnished",
+                "product": {
+                    "productId": 1,
+                    "productName": "OurVilla",
+                    "productType": "Rental House"
+                }
+            }
+        }
+    ]
+}
+
+
+Title: Update overdue details
+
+
+URL:  http://localhost:8080/productbilling/plans/overdue
+
+Method: PUT
+
+Request:
+
+{
+	"overageType":"Maintainance",
+	"overageService":1,
+	"serviceCost":56.50,
+	"unit":"day/s",
+	"plan":{
+		"planId":54
+	}
+}
+
+Response:
+
+{
+    "error": false,
+    "data": {
+        "overageType": "Maintainance",
+        "overageService": 1,
+        "serviceCost": 56.5,
+	"unit":"day/s",
+        "plan": {
+            "planId": 54,
+            "planAmount": 0.0,
+            "planFrequency": 0,
+            "type": null,
+            "product": null
+        }
+    }
+}
+
+
+
+Title: Remove overdue details belongs to a plan
+
+URL:  http://localhost:8080/productbilling/plans/overdue
+
+Method: DELETE 
+
+Request:
+
+{
+	"overageType":"Data",
+	"overageService":1,
+	"serviceCost":56,
+	"unit":"GB",
+	"plan":{
+		"planId":17
+	}
+}
+
+Response:
+
+{
+    "error": false,
+    "data": {
+        "overageType": "Maintainance",
+        "overageService": 1,
+        "serviceCost": 56.5,
+	"unit":"day/s",
+        "plan": {
+            "planId": 54,
+            "planAmount": 0.0,
+            "planFrequency": 0,
+            "type": null,
+            "product": null
+        }
+    }
+}
+
+
+
+Title:
+
+
+URL: 
+
+Method: 
+
+Request:
+
+
+
+Response:
+
+
+
+
+
+
+
+
+
+{
+    "error": false,
+    "data": {
+        "productId": 1,
+        "productName": "JIO",
+        "productType": "SIM",
+        "plan": [
+            {
+                "planId": 18,
+                "planAmount": 199.0,
+                "planFrequency": 54,
+                "type": "Bundle",
+                "detail": [],
+                "charge": [
+                    {
+                        "chargeType": "Activation",
+                        "charge": 99.99,
+                        "document": "none"
+                    }
+                ],
+                "due": [
+                    {
+                        "overageType": "Data",
+                        "overageService": 1,
+                        "serviceCost": 56.0,
+                        "unit": "GB"
+                    },
+                    {
+                        "overageType": "SMS",
+                        "overageService": 1,
+                        "serviceCost": 2.0,
+                        "unit": "sms"
+                    },
+                    {
+                        "overageType": "Voice",
+                        "overageService": 1,
+                        "serviceCost": 1.2,
+                        "unit": "min"
+                    }
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,23 @@
+alter table product modify column product_name varchar(30) not null;
+alter table product modify column product_type varchar(30) not null;
+
+plan:
+alter table plan modify column type varchar(30) not null;
+alter table plan add unique `unique_ele`(`plan_amount`,`type`);
+
+plan_detail:
+
+alter table plan_detail modify service_type varchar(30) not null;
+alter table plan_detail modify unit varchar(30) not null;
+
+plan_charge;
+
+alter table plan_charge modify charge_type varchar(30) not null;
+alter table plan_charge modify document varchar(30);
+
+
+plan_overdue;
+
+alter table plan_overdue modify overage_type varchar(30) not null;
+alter table plan_overdue modify unit varchar(30) not null;
+

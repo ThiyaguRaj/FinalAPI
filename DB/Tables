@@ -1,0 +1,30 @@
+
+company
+
+	create table company(company_id int primary key AUTO_INCREMENT,company_name varchar(50) not null,company_site varchar(100) unique not null, phone bigint unique not null,email varchar(30) unique not null,status varchar(8));
+
+
+product:
+
+	create table product(product_id int primary key AUTO_INCREMENT,product_name varchar(30),product_type varchar(30));
+
+
+plan:
+
+create table plan(plan_id int primary key AUTO_INCREMENT,plan_amount decimal(10,2),plan_frequency int,type varchar(30),product_id int,foreign key(product_id) references product(product_id) on delete cascade on update cascade);
+
+plan_detail:
+
+	create table plan_detail(service_type varchar(30),detail int,plan_id int,primary key(plan_id,service_type),foreign key(plan_id) references plan(plan_id) on delete cascade on update cascade);
+
+plan_overdue:
+
+	create table plan_overdue(overage_type varchar(30),overage_service int,service_cost decimal(10,2),plan_id int,primary key(plan_id,overage_type),foreign key(plan_id) references plan(plan_id) on delete cascade on update cascade);
+
+plan_charge:
+
+create table plan_charge(plan_id int,charge_type varchar(30),charge decimal(10,2),document varchar(30),primary key(plan_id,charge_type),foreign key(plan_id) references plan(plan_id) on update cascade on delete cascade);
+
+
+
+
