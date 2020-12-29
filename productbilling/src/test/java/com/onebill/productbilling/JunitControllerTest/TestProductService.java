@@ -28,7 +28,7 @@ import com.onebill.productbilling.service.ProductServiceImpl;
 public class TestProductService {
 	
 	@Rule
-	public ExpectedException thrown = ExpectedException.none();
+	public ExpectedException exp = ExpectedException.none();
 
 	@Mock
 	private ProductDao dao;
@@ -40,29 +40,45 @@ public class TestProductService {
 	 * 	Test Cases : Add Product
 	 */
 	
-	@Test(expected = BillingException.class)
+	@Test
 	public void testAddProductNameFailure() {
+		exp.expect(BillingException.class);
+		exp.expectMessage("Failed to add product with Name : NULL");
 		ProductDto d1 = new ProductDto();
 		d1.setProductType("Postpaid");
 		when(dao.addProduct(d1)).thenReturn(d1);
-		Assert.assertEquals("Failed to add product with Product Name : NULL", service.addProduct(d1));
+		service.addProduct(d1);
+
+	}
+	@Test
+	public void testAddProductNullFailure() {
+		exp.expect(BillingException.class);
+		exp.expectMessage("Failed to add product with null inputs");
+		ProductDto d1 = new ProductDto();
+		d1.setProductType("Postpaid");
+		when(dao.addProduct(d1)).thenReturn(d1);
+		service.addProduct(null);
 
 	}
 
-	@Test(expected = BillingException.class)
+	@Test
 	public void testAddProductTypeFailure() {
+		exp.expect(BillingException.class);
+		exp.expectMessage("Failed to add product with Product type : NULL");
 		ProductDto d1 = new ProductDto();
 		d1.setProductName("JIO");
 		when(dao.addProduct(d1)).thenReturn(d1);
-		Assert.assertEquals("Failed to add product with Product Type : NULL", service.addProduct(d1));
+		service.addProduct(d1);
 	}
 
-	@Test(expected = BillingException.class)
+	@Test
 	public void testAddProductBothFailure() {
+		exp.expect(BillingException.class);
+		exp.expectMessage("Failed to add product with Name : NULL");
 		ProductDto d1 = new ProductDto();
 		when(dao.addProduct(d1)).thenReturn(d1);
 		service.addProduct(d1);
-		Assert.assertEquals("Failed to add product with Product Name : NULL", service.addProduct(d1));
+		service.addProduct(d1);
 	}
 	
 	@Test
@@ -78,8 +94,21 @@ public class TestProductService {
 	 * 	Test Cases : Update Product
 	 */
 	
-	@Test(expected = BillingException.class)
+	@Test
+	public void testUpdateNullFailure() {
+		exp.expect(BillingException.class);
+		exp.expectMessage("Failed to Update product with null input");
+		ProductDto d1 = new ProductDto();
+		d1.setProductName("JIO");
+		d1.setProductType("Postpaid");
+		when(dao.updateProduct(d1)).thenReturn(d1);
+		service.updateProduct(null);
+	}
+	
+	@Test
 	public void testUpdateIdFailure() {
+		exp.expect(BillingException.class);
+		exp.expectMessage("Failed to Update product with Product ID : NULL");
 		ProductDto d1 = new ProductDto();
 		d1.setProductName("JIO");
 		d1.setProductType("Postpaid");
@@ -87,8 +116,10 @@ public class TestProductService {
 		service.updateProduct(d1);
 	}
 	
-	@Test(expected = BillingException.class)
+	@Test
 	public void testUpdateNameFailure() {
+		exp.expect(BillingException.class);
+		exp.expectMessage("Failed to Update product with Name : NULL");
 		ProductDto d1 = new ProductDto();
 		d1.setProductId(1);
 		d1.setProductType("Postpaid");
@@ -96,8 +127,10 @@ public class TestProductService {
 		service.updateProduct(d1);
 	}
 	
-	@Test(expected = BillingException.class)
+	@Test
 	public void testUpdateTypeFailure() {
+		exp.expect(BillingException.class);
+		exp.expectMessage("Failed to Update product with Product type : NULL");
 		ProductDto d1 = new ProductDto();
 		d1.setProductId(1);
 		d1.setProductName("JIO");
@@ -105,24 +138,30 @@ public class TestProductService {
 		service.updateProduct(d1);
 	}
 	
-	@Test(expected = BillingException.class)
+	@Test
 	public void testUpdateIdNameFailure() {
+		exp.expect(BillingException.class);
+		exp.expectMessage("Failed to Update product with Name : NULL");
 		ProductDto d1 = new ProductDto();
 		d1.setProductType("Postpaid");
 		when(dao.updateProduct(d1)).thenReturn(d1);
 		service.updateProduct(d1);
 	}
 	
-	@Test(expected = BillingException.class)
+	@Test
 	public void testUpdateIdTypeFailure() {
+		exp.expect(BillingException.class);
+		exp.expectMessage("Failed to Update product with Product type : NULL");
 		ProductDto d1 = new ProductDto();
 		d1.setProductName("JIO");
 		when(dao.updateProduct(d1)).thenReturn(d1);
 		service.updateProduct(d1);
 	}
 	
-	@Test(expected = BillingException.class)
+	@Test
 	public void testUpdateNameTypeFailure() {
+		exp.expect(BillingException.class);
+		exp.expectMessage("Failed to Update product with Name : NULL");
 		ProductDto d1 = new ProductDto();
 		d1.setProductId(1);
 		when(dao.updateProduct(d1)).thenReturn(d1);
@@ -143,8 +182,10 @@ public class TestProductService {
 	 * 	Test Cases : Remove Product
 	 */
 	
-	@Test(expected = BillingException.class)
+	@Test
 	public void testRemoveFailure() {
+		exp.expect(BillingException.class);
+		exp.expectMessage("Failed to remove product of id : 1");
 		when(dao.removeproduct(1)).thenReturn(null);
 		Assert.assertNull(service.removeproduct(1));
 	}
@@ -163,8 +204,10 @@ public class TestProductService {
 	 * 	Test Cases : get Product
 	 */
 	
-	@Test(expected = BillingException.class)
+	@Test
 	public void testGetFailure() {
+		exp.expect(BillingException.class);
+		exp.expectMessage("No Product Found for JIO");
 		when(dao.getProduct("JIO")).thenReturn(null);
 		Assert.assertNull(service.getProduct("JIO"));
 	}
@@ -179,8 +222,10 @@ public class TestProductService {
 		Assert.assertEquals(d1,service.getProduct("JIO"));
 	}
 	
-	@Test(expected = BillingException.class)
+	@Test
 	public void testGetByIdFailure() {
+		exp.expect(BillingException.class);
+		exp.expectMessage("No Products found for given id 1");
 		when(dao.getProductWithId(1)).thenReturn(null);
 		Assert.assertNull(service.getProductWithId(1));
 	}
@@ -195,8 +240,10 @@ public class TestProductService {
 		Assert.assertEquals(d1,service.getProductWithId(1));
 	}
 	
-	@Test(expected = BillingException.class)
+	@Test
 	public void testGetAllFailure() {
+		exp.expect(BillingException.class);
+		exp.expectMessage("No product present to display");
 		when(dao.getAllProducts()).thenReturn(new ArrayList<ProductDto>());
 		Assert.assertNull(service.getAllProducts());
 	}
@@ -219,8 +266,10 @@ public class TestProductService {
 	 * 	Test Cases : get Product Plan
 	 */
 	
-	@Test(expected = BillingException.class)
+	@Test
 	public void getProductPlanFailure() {
+		exp.expect(BillingException.class);
+		exp.expectMessage("No plan available for this product");
 		when(dao.getProductPlan(1)).thenReturn(null);
 		Assert.assertNull(service.getProductPlan(1));
 	}
@@ -240,8 +289,10 @@ public class TestProductService {
 	 * 	Test Cases : get Product Plan Detail
 	 */
 	
-	@Test(expected = BillingException.class)
+	@Test
 	public void getProductPlanDetailFailure() {
+		exp.expect(BillingException.class);
+		exp.expectMessage("No details available for this plan id (1) of product ID (1)");
 		when(dao.getPlanDetail(1,1)).thenReturn(null);
 		Assert.assertNull(service.getPlanDetail(1,1));
 	}
@@ -260,8 +311,10 @@ public class TestProductService {
 	 * 	Test Cases : get Product Plan Charge
 	 */
 	
-	@Test(expected = BillingException.class)
+	@Test
 	public void getProductPlanChargeFailure() {
+		exp.expect(BillingException.class);
+		exp.expectMessage("No Extra charges available for this plan");
 		when(dao.getPlanCharge(1,1)).thenReturn(null);
 		Assert.assertNull(service.getPlanCharge(1,1));
 	}
@@ -278,8 +331,10 @@ public class TestProductService {
 	 * 	Test Cases : get Product Plan Overdue
 	 */
 	
-	@Test(expected = BillingException.class)
+	@Test
 	public void getProductPlanOverdueFailure() {
+		exp.expect(BillingException.class);
+		exp.expectMessage("No overdue details available for this plan 1");
 		when(dao.getPlanOverdue(1,1)).thenReturn(null);
 		Assert.assertNull(service.getPlanOverdue(1,1));
 	}

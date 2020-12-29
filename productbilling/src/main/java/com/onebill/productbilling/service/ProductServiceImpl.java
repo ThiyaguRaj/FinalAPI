@@ -25,28 +25,32 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public ProductDto addProduct(ProductDto pro) {
-		ProductDto product = null;
-		try {
-			if (pro.getProductName() != null) {
-				if (pro.getProductType() != null) {
-					try {
-						product = dao.addProduct(pro);
-						if (product != null) {
-							return product;
-						} else {
+		if(pro!=null) {
+			ProductDto product = null;
+			try {
+				if (pro.getProductName() != null) {
+					if (pro.getProductType() != null) {
+						try {
+							product = dao.addProduct(pro);
+							if (product != null) {
+								return product;
+							} else {
+								throw new BillingException("Duplicate product Name. Failed to add Product");
+							}
+						} catch (Exception e) {
 							throw new BillingException("Duplicate product Name. Failed to add Product");
 						}
-					} catch (Exception e) {
-						throw new BillingException("Duplicate product Name. Failed to add Product");
+					} else {
+						throw new BillingException("Failed to add product with Product type : NULL");
 					}
 				} else {
-					throw new BillingException("Failed to add product with Product type : NULL");
+					throw new BillingException("Failed to add product with Name : NULL");
 				}
-			} else {
-				throw new BillingException("Failed to add product with Name : NULL");
+			} catch (Exception e) {
+				throw new BillingException(e.getMessage());
 			}
-		} catch (Exception e) {
-			throw new BillingException(e.getMessage());
+		}else {
+			throw new BillingException("Failed to add product with null inputs");
 		}
 	}
 
@@ -82,33 +86,37 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public ProductDto updateProduct(ProductDto pro) {
-		ProductDto product = null;
-		try {
-			if (pro.getProductName() != null) {
-				if (pro.getProductType() != null) {
-					if (pro.getProductId() != 0) {
-						try {
-							product = dao.updateProduct(pro);
-							if (product != null) {
-								return product;
-							} else {
-								throw new BillingException("Failed to Update product");
+		if(pro!=null) {
+			ProductDto product = null;
+			try {
+				if (pro.getProductName() != null) {
+					if (pro.getProductType() != null) {
+						if (pro.getProductId() != 0) {
+							try {
+								product = dao.updateProduct(pro);
+								if (product != null) {
+									return product;
+								} else {
+									throw new BillingException("Failed to Update product");
+								}
+							} catch (Exception e) {
+								throw new BillingException(
+										"Duplicate product Name or Wrong product ID. Failed to Update Product");
 							}
-						} catch (Exception e) {
-							throw new BillingException(
-									"Duplicate product Name or Wrong product ID. Failed to Update Product");
+						} else {
+							throw new BillingException("Failed to Update product with Product ID : NULL");
 						}
 					} else {
-						throw new BillingException("Failed to Update product with Product ID : NULL");
+						throw new BillingException("Failed to Update product with Product type : NULL");
 					}
 				} else {
-					throw new BillingException("Failed to Update product with Product type : NULL");
+					throw new BillingException("Failed to Update product with Name : NULL");
 				}
-			} else {
-				throw new BillingException("Failed to Update product with Name : NULL");
+			} catch (Exception e) {
+				throw new BillingException(e.getMessage());
 			}
-		} catch (Exception e) {
-			throw new BillingException(e.getMessage());
+		}else {
+			throw new BillingException("Failed to Update product with null inputs");
 		}
 	}
 
