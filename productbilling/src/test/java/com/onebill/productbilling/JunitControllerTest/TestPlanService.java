@@ -1,6 +1,6 @@
 package com.onebill.productbilling.JunitControllerTest;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+//import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
@@ -477,7 +477,7 @@ public class TestPlanService {
 	@Test
 	public void getPlanSuccess() {
 		when(dao.getPlan(1)).thenReturn(Arrays.asList(p));
-		assertEquals(1, service.getPlan(1).size());
+		Assert.assertEquals(1, service.getPlan(1).size());
 	}
 
 	@Test
@@ -485,13 +485,13 @@ public class TestPlanService {
 		exp.expect(BillingException.class);
 		exp.expectMessage("No plan available for this product");
 		when(dao.getPlan(1)).thenReturn(new ArrayList<>());
-		assertEquals("No plan available for this product", service.getPlan(1));
+		Assert.assertEquals("No plan available for this product", service.getPlan(1));
 	}
 
 	@Test
 	public void getAllPlanSuccess() {
 		when(dao.getAllPlans()).thenReturn(Arrays.asList(p));
-		assertEquals(1, service.getAllPlans().size());
+		Assert.assertEquals(1, service.getAllPlans().size());
 	}
 
 	@Test

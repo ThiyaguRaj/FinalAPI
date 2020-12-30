@@ -22,7 +22,7 @@ import com.onebill.productbilling.dto.PlanRespDto;
 import com.onebill.productbilling.dto.ProductDto;
 import com.onebill.productbilling.exception.BillingException;
 import com.onebill.productbilling.service.ProductService;
-import com.onebill.productbilling.service.ProductServiceImpl;
+import com.onebill.productbilling.servicebuilder.ProductServiceFactory;
 
 @RunWith(MockitoJUnitRunner.class)
 public class TestProductService {
@@ -34,7 +34,7 @@ public class TestProductService {
 	private ProductDao dao;
 
 	@InjectMocks
-	private static ProductService service = new ProductServiceImpl();
+	private static ProductService service=ProductServiceFactory.createProductService();
 	
 	/**
 	 * 	Test Cases : Add Product
