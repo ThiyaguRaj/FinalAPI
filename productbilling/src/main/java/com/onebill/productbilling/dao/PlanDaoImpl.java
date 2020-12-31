@@ -265,4 +265,13 @@ public class PlanDaoImpl implements PlanDao {
 		BeanUtils.copyProperties(due, dto);
 		return dto;
 	}
+
+	@Override
+	@Transactional
+	public PlanRespDto getPlanWithId(int planId) {
+		Plan plan=manager.find(Plan.class, planId);
+		PlanRespDto dto=new PlanRespDto();
+		BeanUtils.copyProperties(plan, dto);
+		return dto;
+	}
 }

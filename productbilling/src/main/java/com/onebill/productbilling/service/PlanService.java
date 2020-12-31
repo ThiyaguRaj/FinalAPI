@@ -12,6 +12,8 @@ import com.onebill.productbilling.dto.PlanOverdueRespDto;
 import com.onebill.productbilling.dto.PlanRespDto;
 
 public interface PlanService {
+	
+	public PlanRespDto getPlanWithId(int planId);
 
 	public PlanRespDto addPlan(PlanDto plan);
 	

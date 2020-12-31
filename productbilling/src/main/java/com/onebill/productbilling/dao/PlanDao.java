@@ -15,6 +15,8 @@ public interface PlanDao {
 
 public PlanRespDto addPlan(PlanDto plan);
 	
+	public PlanRespDto getPlanWithId(int planId);
+
 	public List<PlanRespDto> getPlan(int productId);
 
 	public List<PlanRespDto> getAllPlans();

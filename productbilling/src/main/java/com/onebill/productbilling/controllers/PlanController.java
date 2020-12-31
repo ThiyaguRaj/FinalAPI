@@ -26,6 +26,14 @@ public class PlanController {
 	@Autowired
 	private PlanService service;
 
+
+	@GetMapping("plan/{planId}")
+	public ResponseDto getPlanWithId(@PathVariable int planId) {
+		ResponseDto dto = new ResponseDto();
+		dto.setData(service.getPlanWithId(planId));
+		return dto;
+	}
+	
 	@PostMapping
 	public ResponseDto addPlan(@RequestBody PlanDto plan) {
 		ResponseDto dto = new ResponseDto();

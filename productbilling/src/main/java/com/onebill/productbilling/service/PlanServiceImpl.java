@@ -23,12 +23,27 @@ public class PlanServiceImpl implements PlanService {
 	private PlanDao dao;
 
 	@Override
+	public PlanRespDto getPlanWithId(int planId) {
+		PlanRespDto dto = null;
+		try {
+			dto = dao.getPlanWithId(planId);
+			if (dto != null) {
+				return dto;
+			} else {
+				throw new BillingException("No Plan found for given id " + planId);
+			}
+		} catch (Exception e) {
+			throw new BillingException("No plan found for given id " + planId);
+		}
+	}
+
+	@Override
 	public PlanRespDto addPlan(PlanDto plan) {
 		if (plan != null) {
 			PlanRespDto plan1 = null;
 			int count = 0;
 			try {
-				if (plan.getPlanAmount() != 0.0 && plan.getPlanFrequency() != 0 && plan.getType() != null
+				if (plan.getPlanAmount() != 0.0 && plan.getPlanFrequency() != 0 && plan.getType() != ""
 						&& plan.getProduct() != null) {
 					count++;
 					plan1 = dao.addPlan(plan);
@@ -45,7 +60,7 @@ public class PlanServiceImpl implements PlanService {
 					throw new BillingException("Task Failed. Plan Amount should not be null");
 				} else if (plan.getPlanFrequency() == 0) {
 					throw new BillingException("Task Failed. Plan Duration should not be null");
-				} else if (plan.getType() == null) {
+				} else if (plan.getType() == "") {
 					throw new BillingException("Task Failed. Plan Type should not be null");
 				} else {
 					if (count == 0) {
@@ -487,7 +502,7 @@ public class PlanServiceImpl implements PlanService {
 
 	@Override
 	public PlanOverdueRespDto removeOverdueDetails(PlanOverdueDto plan) {
-		if(plan!=null) {
+		if (plan != null) {
 			PlanOverdueRespDto due = null;
 			int count = 0;
 			try {
@@ -513,7 +528,7 @@ public class PlanServiceImpl implements PlanService {
 					}
 				}
 			}
-		}else {
+		} else {
 			throw new BillingException("Inputs should not be null");
 		}
 	}
