@@ -284,7 +284,7 @@ public class TestPlanService {
 
 	@Test
 	public void testGetAllPlansSuccess() {
-		when(dao.getAllPlans()).thenReturn(Arrays.asList(p));
+		when(dao.getAllPlans()).thenReturn(Arrays.asList(dto));
 		Assert.assertEquals(1, service.getAllPlans().size());
 	}
 
@@ -490,7 +490,7 @@ public class TestPlanService {
 
 	@Test
 	public void getAllPlanSuccess() {
-		when(dao.getAllPlans()).thenReturn(Arrays.asList(p));
+		when(dao.getAllPlans()).thenReturn(Arrays.asList(dto));
 		Assert.assertEquals(1, service.getAllPlans().size());
 	}
 

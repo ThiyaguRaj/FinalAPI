@@ -64,10 +64,10 @@ public class PlanDaoImpl implements PlanDao {
 	}
 
 	@Override
-	public List<PlanRespDto> getAllPlans() {
+	public List<PlanDto> getAllPlans() {
 		List<Plan> list = manager.createQuery("FROM Plan", Plan.class).getResultList();
 		ModelMapper mapper = new ModelMapper();
-		Type listType = new TypeToken<List<PlanRespDto>>() {
+		Type listType = new TypeToken<List<PlanDto>>() {
 		}.getType();
 		return mapper.map(list, listType);
 	}

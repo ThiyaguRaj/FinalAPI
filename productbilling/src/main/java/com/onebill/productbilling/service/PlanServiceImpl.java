@@ -92,8 +92,8 @@ public class PlanServiceImpl implements PlanService {
 	}
 
 	@Override
-	public List<PlanRespDto> getAllPlans() {
-		List<PlanRespDto> plan = null;
+	public List<PlanDto> getAllPlans() {
+		List<PlanDto> plan = null;
 		try {
 			plan = dao.getAllPlans();
 			if (!plan.isEmpty()) {

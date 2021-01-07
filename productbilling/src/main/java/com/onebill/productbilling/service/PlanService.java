@@ -19,7 +19,7 @@ public interface PlanService {
 	
 	public List<PlanRespDto> getPlan(int productId);
 
-	public List<PlanRespDto> getAllPlans();
+	public List<PlanDto> getAllPlans();
 
 	public PlanRespDto updatePlan(PlanDto plan);
 
